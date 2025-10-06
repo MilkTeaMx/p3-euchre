@@ -48,6 +48,12 @@
         "variant": "cpp",
         "vector": "cpp",
         "fstream": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "__config": "cpp",
+        "filesystem": "cpp",
+        "format": "cpp",
+        "iomanip": "cpp",
+        "system_error": "cpp",
+        "version": "cpp"
     }
 }

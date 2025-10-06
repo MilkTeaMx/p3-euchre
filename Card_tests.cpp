@@ -5,6 +5,7 @@
 using namespace std;
 
 
+//Tests explicit constructors, get rank and get suit
 TEST(test_card_ctor) {
     Card c(ACE, HEARTS);
     ASSERT_EQUAL(ACE, c.get_rank());
@@ -13,13 +14,15 @@ TEST(test_card_ctor) {
 
 // Add more test cases here
 
-
+//Tests the default constructor without arguments
 TEST(test_card_ctor_default) {
     Card c;
     ASSERT_EQUAL(TWO, c.get_rank());
     ASSERT_EQUAL(SPADES, c.get_suit());
 }
 
+
+//Tests get suits with trump cards
 TEST(test_get_suit_with_trump) {
     Card c(JACK, CLUBS);
     ASSERT_EQUAL(c.get_suit(SPADES), SPADES);
@@ -34,6 +37,7 @@ TEST(test_get_suit_with_trump) {
     ASSERT_EQUAL(c4.get_suit(CLUBS), HEARTS);
 }
 
+//tests is face or ace on 2 cards, one face and one non face
 TEST(test_is_face_or_ace) {
     Card c1(JACK, DIAMONDS);
     Card c2(THREE, SPADES);
@@ -41,6 +45,7 @@ TEST(test_is_face_or_ace) {
     ASSERT_EQUAL(c2.is_face_or_ace(), false);
 };
 
+//tests is right bower on 1 bower and one non bower
 TEST(test_is_right_bower) {
     Card c1(JACK, HEARTS);
     ASSERT_EQUAL(c1.is_right_bower(HEARTS), true);
@@ -51,7 +56,7 @@ TEST(test_is_right_bower) {
     ASSERT_EQUAL(c2.is_right_bower(DIAMONDS), false);
 }
 
-
+//tests is left bower on 1 bower and one non bower
 TEST(test_is_left_bower) {
     Card c1(JACK, DIAMONDS);
     ASSERT_EQUAL(c1.is_left_bower(HEARTS), true);
@@ -65,6 +70,8 @@ TEST(test_is_left_bower) {
     ASSERT_EQUAL(c3.is_left_bower(SPADES), false);
 }
 
+
+//tests is trump on myriad cards
 TEST(test_is_trump) {
     Card c1(JACK, DIAMONDS);
     ASSERT_EQUAL(c1.is_trump(HEARTS), true);
@@ -81,6 +88,7 @@ TEST(test_is_trump) {
     ASSERT_EQUAL(c3.is_trump(DIAMONDS), false);
 }
 
+//tests basic operators (non stream) on myriad cards
 TEST(test_operators) {
     Card c1(JACK, SPADES);
     Card c2(KING, SPADES);
@@ -102,6 +110,7 @@ TEST(test_operators) {
     ASSERT_EQUAL((c1 != c2), true);
 }
 
+//tests operator stream output input
 TEST(test_operator_input_output) {
     Card c1(JACK, SPADES);
     Card c2(ACE, HEARTS);
@@ -118,6 +127,7 @@ TEST(test_operator_input_output) {
     ASSERT_EQUAL(c4, c2);
 }
 
+//tests all suit next possibilities
 TEST(test_suit_next) {
     ASSERT_EQUAL(Suit_next(CLUBS), SPADES);
     ASSERT_EQUAL(Suit_next(SPADES), CLUBS);
@@ -125,6 +135,7 @@ TEST(test_suit_next) {
     ASSERT_EQUAL(Suit_next(DIAMONDS), HEARTS);
 }
 
+//tests card less given no led card
 TEST(test_Card_less_no_led) {
     Card right_bower(JACK, HEARTS);
     Card left_bower(JACK, DIAMONDS);
@@ -151,6 +162,7 @@ TEST(test_Card_less_no_led) {
     ASSERT_EQUAL(Card_less(king_non_trump, ace_non_trump, HEARTS), true);
 }
 
+//tests card less given led card
 TEST(test_Card_less_yes_led) {
     Card right_bower(JACK, SPADES);
     Card left_bower(JACK, CLUBS);
