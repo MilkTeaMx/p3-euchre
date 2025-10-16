@@ -83,6 +83,7 @@ std::ostream & operator<<(std::ostream &os, Suit suit) {
 //REQUIRES If any input is read, it must be a valid suit
 //EFFECTS Reads a Suit from a stream, for example "Spades" -> SPADES
 std::istream & operator>>(std::istream &is, Suit &suit) {
+  assert(suit >= 0 && suit <= 3);
   string str;
   if (is >> str) {
     suit = string_to_suit(str);
