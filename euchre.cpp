@@ -116,7 +116,6 @@ class Game {
                     cout << players[current_player]->get_name() << 
                      " orders up " << orderUp <<endl;
 
-                    cout << "round1" <<endl;
                     players[dealer_index]->add_and_discard(upcard);
                     if (current_player == 0 || current_player == 2) {
                         team1_ordered_up = true;
@@ -140,7 +139,6 @@ class Game {
                     cout << players[current_player]->get_name() << 
                      " orders up " << orderUp <<endl;
 
-                    cout << "round2" <<endl;
 
                     if (current_player == 0 || current_player == 2) {
                         team1_ordered_up = true;
@@ -189,6 +187,7 @@ class Game {
                 }
 
                 cout << trick_player->get_name() << " takes the trick" << endl;
+                          
                 lead_player_index = trick_player_index;
 
                 if (trick_player_index % 2 == 0) {
@@ -227,7 +226,7 @@ class Game {
             }
             
             if (team2wins > team1wins) {
-                cout << players[1]->get_name() << " t " << players[3]->get_name() << " win the hand" << endl;
+                cout << players[1]->get_name() << " and " << players[3]->get_name() << " win the hand" << endl;
                 if (!team1_ordered_up) {
                     if (team2wins == 3 || team2wins == 4) {
                         team2score += 1;

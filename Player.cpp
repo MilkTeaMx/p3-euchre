@@ -208,26 +208,17 @@ class HumanPlayer : public Player {
 
     void add_and_discard(const Card &upcard) override {
       print_hand();
-
       hand.push_back(upcard);
-      sort(hand.begin(), hand.end());
-      
+  
       cout << "Discard upcard: [-1]\n";
-
-
-
       cout << "Human player " << name << ", please select a card to discard:\n";
 
       int answer;
-      cout << "DISCARDING: " << answer << endl;
-
       cin >> answer;
-
-      if (answer == -1) {
+   
+      if (answer == -1) { //discard upcard
         for (int i = 0; i < hand.size(); ++i) {
           if (hand[i] == upcard) {
-
-            cout << "HERE1" << endl;
             hand.erase(hand.begin() + i);
 
             break;
@@ -236,9 +227,10 @@ class HumanPlayer : public Player {
       }
       else {
 
-        cout << "HIHIHI2" <<endl;
         hand.erase(hand.begin() + answer);
       }
+      sort(hand.begin(), hand.end());
+
     }
 
     Card lead_card(Suit trump) override {
