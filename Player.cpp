@@ -213,20 +213,30 @@ class HumanPlayer : public Player {
       sort(hand.begin(), hand.end());
       
       cout << "Discard upcard: [-1]\n";
+
+
+
       cout << "Human player " << name << ", please select a card to discard:\n";
 
       int answer;
+      cout << "DISCARDING: " << answer << endl;
+
       cin >> answer;
 
       if (answer == -1) {
         for (int i = 0; i < hand.size(); ++i) {
           if (hand[i] == upcard) {
+
+            cout << "HERE1" << endl;
             hand.erase(hand.begin() + i);
+
             break;
           }
         }
       }
       else {
+
+        cout << "HIHIHI2" <<endl;
         hand.erase(hand.begin() + answer);
       }
     }

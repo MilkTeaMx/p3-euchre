@@ -57,7 +57,7 @@ class Game {
             // Game starts
             while (team1score < points_to_win && team2score < points_to_win) {
                 pack.reset();
-                if (bool_shuffle) { pack.shuffle(); }
+                if (bool_shuffle) { pack.shuffle(); } //?
 
                 cout << "Hand " << hand_num << endl;
 
@@ -227,7 +227,7 @@ class Game {
             }
             
             if (team2wins > team1wins) {
-                cout << players[1]->get_name() << " and " << players[3]->get_name() << " win the hand" << endl;
+                cout << players[1]->get_name() << " t " << players[3]->get_name() << " win the hand" << endl;
                 if (!team1_ordered_up) {
                     if (team2wins == 3 || team2wins == 4) {
                         team2score += 1;
