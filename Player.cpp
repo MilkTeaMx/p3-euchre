@@ -44,8 +44,9 @@ class SimplePlayer : public Player {
 
       if (round == 1) {
         int valuable_card_counter = 0;
+        Suit trump_pot = upcard.get_suit();
         for (const Card &card : hand) {
-          if (card.get_suit() == upcard.get_suit() &&
+          if (card.get_suit(trump_pot) == trump_pot &&
               card.is_face_or_ace()) {
                 ++valuable_card_counter;
           }

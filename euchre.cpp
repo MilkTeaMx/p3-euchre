@@ -41,10 +41,6 @@ class Game {
                     Player* player = Player_factory(p.first, p.second);
                     players.push_back(player);
                 }
-                
-                if (bool_shuffle) {
-                    shuffle();
-                }
         }
 
         ~Game() { //destructor
@@ -56,8 +52,12 @@ class Game {
         void play() {
             // Game starts
             while (team1score < points_to_win && team2score < points_to_win) {
-                pack.reset();
-                if (bool_shuffle) { pack.shuffle(); } //?
+                if (bool_shuffle) { 
+                    pack.shuffle(); 
+                }
+                else { 
+                    pack.reset(); 
+                }
 
                 cout << "Hand " << hand_num << endl;
 
@@ -80,10 +80,6 @@ class Game {
                 cout << players[1]->get_name() << " and " << 
                 players[3]->get_name() << " win!" <<endl;
             }
-        }
-
-        void shuffle() {
-            pack.shuffle();
         }
 
         void deal() {
@@ -110,8 +106,9 @@ class Game {
             for (int i = 1; i < 5; i++) {
                 int current_player = (dealer_index + i) % 4;
                 bool is_dealer = (current_player == dealer_index);
+                
                 if (players[current_player]->make_trump(upcard, is_dealer, 1, orderUp)){
-                    trump = upcard.get_suit();
+                    trump = orderUp;
                     
                     cout << players[current_player]->get_name() << 
                      " orders up " << orderUp <<endl;
@@ -133,6 +130,7 @@ class Game {
             for (int i = 1; i < 5; i++) {
                 int current_player = (dealer_index + i) % 4;
                 bool is_dealer = (current_player == dealer_index);
+
                 if (players[current_player]->make_trump(upcard, is_dealer, 2, orderUp)){
                     trump = orderUp;
 
@@ -226,7 +224,8 @@ class Game {
             }
             
             if (team2wins > team1wins) {
-                cout << players[1]->get_name() << " and " << players[3]->get_name() << " win the hand" << endl;
+                cout << players[1]->get_name() << " and " 
+                << players[3]->get_name() << " win the hand" << endl;
                 if (!team1_ordered_up) {
                     if (team2wins == 3 || team2wins == 4) {
                         team2score += 1;
@@ -260,30 +259,25 @@ int incorrect_usage() {
 int main(int argc, char* argv[]) {
     if (argc != 12) {
         return incorrect_usage();
-    } else if (stoi(argv[3]) < 1 && stoi(argv[3]) > 100){
-        cout << "1";
+    } else if (stoi(argv[3]) < 1 || stoi(argv[3]) > 100){
         return incorrect_usage();
     } else if (string(argv[2]) != "shuffle" && string(argv[2]) != "noshuffle") {
-        cout << "2";
         return incorrect_usage();
     } else if (string(argv[5]) != "Simple" && string(argv[5]) != "Human") {
-        cout << "3";
         return incorrect_usage();
     } else if (string(argv[7]) != "Simple" && string(argv[7]) != "Human") {
-        cout << "4";
         return incorrect_usage();
     } else if (string(argv[9]) != "Simple" && string(argv[9]) != "Human") {
-        cout << "5";
         return incorrect_usage();
     } else if (string(argv[11]) != "Simple" && string(argv[11]) != "Human") {
-        cout << "6";
         return incorrect_usage();
     }
 
     cout << string(argv[0]) << " " << string(argv[1]) << " " << string(argv[2]) << " " 
-        << string(argv[3]) << " " << string(argv[4]) << " " << string(argv[5]) << " "  //Too long
+        << string(argv[3]) << " " << string(argv[4]) << " " << string(argv[5]) << " " 
         << string(argv[6]) << " " << string(argv[7]) << " " << string(argv[8]) << " " 
-        << string(argv[9]) << " " << string(argv[10]) << " " << string(argv[11]) << " " <<endl; //Too long
+        << string(argv[9]) << " " << string(argv[10]) << " " << string(argv[11]) << " " 
+        <<endl;
 
     ifstream fin(argv[1]);
 
