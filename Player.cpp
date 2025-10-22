@@ -207,10 +207,11 @@ class HumanPlayer : public Player {
     }
 
     void add_and_discard(const Card &upcard) override {
+      print_hand();
+
       hand.push_back(upcard);
       sort(hand.begin(), hand.end());
-
-      print_hand();
+      
       cout << "Discard upcard: [-1]\n";
       cout << "Human player " << name << ", please select a card to discard:\n";
 
